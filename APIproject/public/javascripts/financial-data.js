@@ -1,6 +1,5 @@
 window.onload = async function() {
   function chartDisplay(data) {
-    // var data = response.data.bpi;
     var xArray = Object.keys(data);
     var yArray = Object.values(data);
 
@@ -28,15 +27,12 @@ window.onload = async function() {
   function updateChart() {
     var startDateInput = startDate.value;
     var endDateInput = endDate.value;
-    console.log(startDateInput);
-    console.log(endDateInput);
 
     axios
       .get(
         `http://api.coindesk.com/v1/bpi/historical/close.json?start=${startDateInput}&end=${endDateInput}`
       )
       .then(response => {
-        console.log(response);
         chartDisplay(response.data.bpi);
       })
       .catch(err => {
@@ -57,8 +53,6 @@ window.onload = async function() {
   var endDate = document.getElementById("end-date");
   var currency = document.getElementById("currency");
   var currencyInput = currency.value;
-
-  
 
   startDate.onchange = function() {
     updateChart();
